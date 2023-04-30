@@ -10,10 +10,10 @@ FASTLED_USING_NAMESPACE
 //#define CLK_PIN   4
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
-#define NUM_LEDS    64
+#define NUM_LEDS    30
 
-#define BRIGHTNESS          96
-#define FRAMES_PER_SECOND  120
+#define BRIGHTNESS          96 //0-255
+#define FRAMES_PER_SECOND  120 //leds refresh per second
 
 typedef void (*SimplePatternList[])();
 
@@ -22,7 +22,7 @@ typedef void (*SimplePatternList[])();
 void leds_init();
 
 void updateghue();
-void nextPattern(uint8_t* gCurrentPatternNumber, SimplePatternList gPatterns);
+void nextPattern(uint8_t* gCurrentPatternNumber, uint8_t pattern_list_len);
 void rainbow();
 void addGlitter( fract8 chanceOfGlitter);
 void rainbowWithGlitter();

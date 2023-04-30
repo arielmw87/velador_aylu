@@ -19,16 +19,10 @@ void updateghue(){
     gHue++;
 }
 
-void nextPattern(uint8_t* gCurrentPatternNumber, SimplePatternList gPatterns)
+void nextPattern(uint8_t* gCurrentPatternNumber, uint8_t pattern_list_len)
 {
   // add one to the current pattern number, and wrap around at the end
-  *gCurrentPatternNumber = (*gCurrentPatternNumber + 1) % ARRAY_SIZE( gPatterns);
-}
-
-void rainbow() 
-{
-  // FastLED's built-in rainbow generator
-  fill_rainbow( leds, NUM_LEDS, gHue, 7);
+  *gCurrentPatternNumber = (*gCurrentPatternNumber + 1) % pattern_list_len;
 }
 
 void addGlitter( fract8 chanceOfGlitter) 
@@ -38,13 +32,26 @@ void addGlitter( fract8 chanceOfGlitter)
   }
 }
 
+
+//------------------------------------------------------------
+// Funciones que se llaman para los distintos efectos
+//------------------------------------------------------------
+
+
+void rainbow() 
+{
+  // FastLED's built-in rainbow generator
+  fill_rainbow( leds, NUM_LEDS, gHue, 7);
+}
+//------------------------------------------
+
 void rainbowWithGlitter() 
 {
   // built-in FastLED rainbow, plus some random sparkly glitter
   rainbow();
   addGlitter(80);
 }
-
+//------------------------------------------
 
 void confetti() 
 {
@@ -53,6 +60,7 @@ void confetti()
   int pos = random16(NUM_LEDS);
   leds[pos] += CHSV( gHue + random8(64), 200, 255);
 }
+//------------------------------------------
 
 void sinelon()
 {
@@ -61,6 +69,7 @@ void sinelon()
   int pos = beatsin16( 13, 0, NUM_LEDS-1 );
   leds[pos] += CHSV( gHue, 255, 192);
 }
+//------------------------------------------
 
 void bpm()
 {
@@ -72,6 +81,7 @@ void bpm()
     leds[i] = ColorFromPalette(palette, gHue+(i*2), beat-gHue+(i*10));
   }
 }
+//------------------------------------------
 
 void juggle() {
   // eight colored dots, weaving in and out of sync with each other
@@ -82,3 +92,4 @@ void juggle() {
     dothue += 32;
   }
 }
+//------------------------------------------

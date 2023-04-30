@@ -12,7 +12,11 @@
 //
 // -Mark Kriegsman, December 2014
 
-
+/*
+ * uso el ejemplo FastLED "100-lines-of-code" demo reel, ya que trae 
+ * una serie de efectos ya hechos y una buena manera de cambiar entre
+ * ellos con un vector de punteros a funcion.
+ */
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -20,7 +24,15 @@
 //---------------------------------------------------------------------------------------------------------
 
 void setup() {
-  delay(3000); // 3 second delay for recovery
+  
+  pinMode(13,OUTPUT);
+
+  for(uint8_t i = 0 ; i< 30 ; i++){
+    digitalWrite(13,HIGH);
+    delay(50); 
+    digitalWrite(13,LOW);
+    delay(50); 
+  }// 3 second delay for recovery
   
   leds_init();
 
@@ -44,9 +56,17 @@ void loop()
   // insert a delay to keep the framerate modest
   FastLED.delay(1000/FRAMES_PER_SECOND); 
 
+
   // do some periodic updates
   EVERY_N_MILLISECONDS( 20 ) { updateghue(); } // slowly cycle the "base color" through the rainbow
-  EVERY_N_SECONDS( 10 ) { nextPattern(&gCurrentPatternNumber, gPatterns); } // change patterns periodically
+  EVERY_N_SECONDS( 10 ) { 
+    digitalWrite(13,HIGH);
+    FastLED.delay(100); 
+    digitalWrite(13,LOW);
+
+    nextPattern(&gCurrentPatternNumber, ARRAY_SIZE( gPatterns)); 
+  
+  } // change patterns periodically
 }
 
 //---------------------------------------------------------------------------------------------------------
