@@ -27,7 +27,7 @@ void setup() {
   
   pinMode(13,OUTPUT);
 
-  for(uint8_t i = 0 ; i< 30 ; i++){
+  for(uint8_t i = 0 ; i< 5 ; i++){
     digitalWrite(13,HIGH);
     delay(50); 
     digitalWrite(13,LOW);
@@ -59,7 +59,7 @@ void loop()
 
   // do some periodic updates
   EVERY_N_MILLISECONDS( 20 ) { updateghue(); } // slowly cycle the "base color" through the rainbow
-  EVERY_N_SECONDS( 10 ) { 
+  EVERY_N_SECONDS( 15 ) { 
     digitalWrite(13,HIGH);
     FastLED.delay(100); 
     digitalWrite(13,LOW);

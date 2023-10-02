@@ -12,7 +12,7 @@ FASTLED_USING_NAMESPACE
 #define COLOR_ORDER GRB
 #define NUM_LEDS    30
 
-#define BRIGHTNESS          96 //0-255
+#define BRIGHTNESS          100//96 //0-255
 #define FRAMES_PER_SECOND  120 //leds refresh per second
 
 typedef void (*SimplePatternList[])();
