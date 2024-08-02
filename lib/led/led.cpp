@@ -25,7 +25,7 @@ void nextPattern(uint8_t* gCurrentPatternNumber, uint8_t pattern_list_len)
   *gCurrentPatternNumber = (*gCurrentPatternNumber + 1) % pattern_list_len;
 }
 
-void addGlitter( fract8 chanceOfGlitter) 
+void addGlitter( fract8 chanceOfGlitter)
 {
   if( random8() < chanceOfGlitter) {
     leds[ random16(NUM_LEDS) ] += CRGB::White;
@@ -38,14 +38,14 @@ void addGlitter( fract8 chanceOfGlitter)
 //------------------------------------------------------------
 
 
-void rainbow() 
+void rainbow()
 {
   // FastLED's built-in rainbow generator
   fill_rainbow( leds, NUM_LEDS, gHue, 7);
 }
 //------------------------------------------
 
-void rainbowWithGlitter() 
+void rainbowWithGlitter()
 {
   // built-in FastLED rainbow, plus some random sparkly glitter
   rainbow();
@@ -53,7 +53,7 @@ void rainbowWithGlitter()
 }
 //------------------------------------------
 
-void confetti() 
+void confetti()
 {
   // random colored speckles that blink in and fade smoothly
   fadeToBlackBy( leds, NUM_LEDS, 10);
@@ -91,5 +91,16 @@ void juggle() {
     leds[beatsin16( i+7, 0, NUM_LEDS-1 )] |= CHSV(dothue, 200, 255);
     dothue += 32;
   }
+}
+//------------------------------------------
+void magentaWithGlitter(){
+
+  fill_solid( &leds[0], NUM_LEDS, CRGB::Magenta );
+//  for( int i = 0; i < NUM_LEDS; i++) {
+//    leds[i]=CRGB::Magenta;
+//  }
+  fadeToBlackBy( leds, NUM_LEDS, 150);
+  addGlitter(80);
+
 }
 //------------------------------------------

@@ -12,8 +12,8 @@ FASTLED_USING_NAMESPACE
 #define COLOR_ORDER GRB
 #define NUM_LEDS    30
 
-#define BRIGHTNESS          100//96 //0-255
-#define FRAMES_PER_SECOND  120 //leds refresh per second
+#define BRIGHTNESS          255//96 //0-255
+#define FRAMES_PER_SECOND   100 //leds refresh per second
 
 typedef void (*SimplePatternList[])();
 
@@ -22,14 +22,27 @@ typedef void (*SimplePatternList[])();
 void leds_init();
 
 void updateghue();
-void nextPattern(uint8_t* gCurrentPatternNumber, uint8_t pattern_list_len);
+void nextPattern( uint8_t* gCurrentPatternNumber, uint8_t pattern_list_len );
+
+//---------------------------------------------------
+//---------------------------------------------------
+//      EFFECTS ->
+//---------------------------------------------------
+//---------------------------------------------------
+
 void rainbow();
-void addGlitter( fract8 chanceOfGlitter);
 void rainbowWithGlitter();
 void confetti();
 void sinelon();
 void bpm();
 void juggle();
+void magentaWithGlitter();
+
+
+// effect used function:
+void addGlitter( fract8 chanceOfGlitter );
+
+
 
 
 #endif //__led_
